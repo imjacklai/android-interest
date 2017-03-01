@@ -62,6 +62,9 @@ public class HistoryFragment extends Fragment {
             public void onChange(RealmResults<Entity> elements) {
                 recyclerView.setVisibility(elements.size() == 0 ? View.GONE : View.VISIBLE);
                 description.setVisibility(elements.size() == 0 ? View.VISIBLE : View.GONE);
+
+                if (elements.size() > 20) elements.last().delete();
+
                 adapter.notifyDataSetChanged();
             }
         });
