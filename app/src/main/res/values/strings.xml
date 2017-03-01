@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Interest</string>
+
+    <string name="principal">本金</string>
+    <string name="interest">年利率(%)</string>
+    <string name="period">週期(年)</string>
+    <string name="invest">每年投資(選填)</string>
+    <string name="calculate">試算</string>
+    <string name="clear">清除</string>
+
+    <string name="simple_interest_amount">單利本利和</string>
+    <string name="compound_interest_amount">複利本利和</string>
+    <string name="invest_interest_amount">定期定額複利本利和</string>
 </resources>
