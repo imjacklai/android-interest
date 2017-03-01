@@ -17,6 +17,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import tw.ctl.interest.calculation.CalculationFragment;
+import tw.ctl.interest.history.HistoryFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+        viewPager.setOffscreenPageLimit(2);
 
         tabLayout.setupWithViewPager(viewPager);
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private View getTabView(int position) {
         View view = LayoutInflater.from(this).inflate(R.layout.tab, tabLayout, false);
         TabViewHolder viewHolder = new TabViewHolder(view);
-        viewHolder.tabTitle.setText(position == 0 ? "計算" : (position == 1 ? "歷史" : "資訊"));
+        viewHolder.tabTitle.setText(position == 0 ? "試算" : (position == 1 ? "紀錄" : "資訊"));
         Drawable drawable = ContextCompat
                 .getDrawable(this, position == 0 ? R.drawable.tab_calculator :
                         (position == 1 ? R.drawable.tab_history : R.drawable.tab_info));

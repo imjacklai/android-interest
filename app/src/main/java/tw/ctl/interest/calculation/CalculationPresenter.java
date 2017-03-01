@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 
 import tw.ctl.interest.BasePresenter;
+import tw.ctl.interest.Entity;
 
 /**
  * Created by jacklai on 2017/3/1.
@@ -23,22 +24,27 @@ public class CalculationPresenter implements BasePresenter<CalculationView> {
         view = null;
     }
 
-    public void calculate(String principal, String interest, String period, String invest) {
-        BigDecimal principalDecimal = new BigDecimal(principal);
-        BigDecimal interestDecimal = new BigDecimal(String.valueOf(Double.valueOf(interest) / 100));
-        BigDecimal periodDecimal = new BigDecimal(period);
-        int periodInt = Integer.valueOf(period);
+    public void calculate(Entity entity) {
+        BigDecimal principalDecimal = new BigDecimal(entity.principal);
+        BigDecimal interestDecimal = new BigDecimal(String.valueOf(Double.valueOf(entity.interest) / 100));
+        BigDecimal periodDecimal = new BigDecimal(entity.period);
+        int periodInt = Integer.valueOf(entity.period);
 
-        String simpleResult = calculateSimpleInterest(principalDecimal, interestDecimal, periodDecimal);
-        String compoundResult = calculateCompoundInterest(principalDecimal, interestDecimal, periodInt);
+        entity.principal = formatDecimal(principalDecimal);
+        entity.simpleResult = calculateSimpleInterest(principalDecimal, interestDecimal, periodDecimal);
+        entity.compoundResult = calculateCompoundInterest(principalDecimal, interestDecimal, periodInt);
 
-        if (invest.isEmpty()) {
-            view.onResult(simpleResult, compoundResult, "---");
+        if (entity.invest.isEmpty()) {
+            entity.invest = "---";
+            entity.investResult = "---";
         } else {
-            BigDecimal investDecimal = new BigDecimal(invest);
-            String investResult = calculateInvestInterest(principalDecimal, interestDecimal, periodInt, investDecimal);
-            view.onResult(simpleResult, compoundResult, investResult);
+            BigDecimal investDecimal = new BigDecimal(entity.invest);
+            entity.invest = formatDecimal(investDecimal);
+            entity.investResult = calculateInvestInterest(principalDecimal, interestDecimal, periodInt, investDecimal);
         }
+
+        view.onResult(entity);
+        entity.save();
     }
 
     private String calculateSimpleInterest(BigDecimal principal, BigDecimal interest, BigDecimal period) {

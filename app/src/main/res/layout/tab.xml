@@ -9,7 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:drawablePadding="5dp"
         android:textSize="12sp"
         android:textColor="@color/tab_title"/>
 

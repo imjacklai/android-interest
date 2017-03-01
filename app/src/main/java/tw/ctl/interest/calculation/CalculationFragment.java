@@ -16,6 +16,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import tw.ctl.interest.Entity;
 import tw.ctl.interest.R;
 
 /**
@@ -55,10 +56,10 @@ public class CalculationFragment extends Fragment implements CalculationView {
     }
 
     @Override
-    public void onResult(String simpleResult, String compoundResult, String investResult) {
-        simpleResultText.setText(simpleResult);
-        compoundResultText.setText(compoundResult);
-        investResultText.setText(investResult);
+    public void onResult(Entity entity) {
+        simpleResultText.setText(entity.simpleResult);
+        compoundResultText.setText(entity.compoundResult);
+        investResultText.setText(entity.investResult);
 
         cardView.setVisibility(View.VISIBLE);
 
@@ -67,12 +68,13 @@ public class CalculationFragment extends Fragment implements CalculationView {
 
     @OnClick(R.id.calculate_button)
     public void onCalculateButtonClicked() {
-        String principal = principalField.getText().toString();
-        String interest = interestField.getText().toString();
-        String period = periodField.getText().toString();
-        String invest = investField.getText().toString();
+        Entity entity = new Entity();
+        entity.principal = principalField.getText().toString();
+        entity.interest = interestField.getText().toString();
+        entity.period = periodField.getText().toString();
+        entity.invest = investField.getText().toString();
 
-        if (!checkFieldsValid(principal, interest, period)) return;
+        if (!checkFieldsValid(entity)) return;
 
         View view = getActivity().getCurrentFocus();
         if (view != null) {
@@ -87,7 +89,7 @@ public class CalculationFragment extends Fragment implements CalculationView {
         periodField.clearFocus();
         investField.clearFocus();
 
-        presenter.calculate(principal, interest, period, invest);
+        presenter.calculate(entity);
     }
 
     @OnClick(R.id.clear_button)
@@ -98,13 +100,13 @@ public class CalculationFragment extends Fragment implements CalculationView {
         investField.setText("");
     }
 
-    private boolean checkFieldsValid(String principal, String interest, String period) {
-        if (!principal.isEmpty() && !interest.isEmpty() && !period.isEmpty()) {
+    private boolean checkFieldsValid(Entity entity) {
+        if (!entity.principal.isEmpty() && !entity.interest.isEmpty() && !entity.period.isEmpty()) {
             return true;
         } else {
-            if (principal.isEmpty()) principalField.setError("請輸入");
-            if (interest.isEmpty()) interestField.setError("請輸入");
-            if (period.isEmpty()) periodField.setError("請輸入");
+            if (entity.principal.isEmpty()) principalField.setError("請輸入");
+            if (entity.interest.isEmpty()) interestField.setError("請輸入");
+            if (entity.period.isEmpty()) periodField.setError("請輸入");
             return false;
         }
     }
