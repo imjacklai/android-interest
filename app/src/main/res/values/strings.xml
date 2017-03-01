@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Interest</string>
+    <string name="app_name">複利試算</string>
 
     <string name="principal">本金</string>
     <string name="interest">年利率(%)</string>
