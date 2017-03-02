@@ -12,5 +12,25 @@
     <string name="compound_interest_amount">複利本利和</string>
     <string name="invest_interest_amount">定期定額複利本利和</string>
 
-    <string name="admob_id_1">ca-app-pub-2754939326809910/4956864984</string>
+    <string name="simple_interest">單利</string>
+    <string name="compound_interest">複利</string>
+    <string name="invest_interest">定期定額複利</string>
+
+    <string name="simple_interest_description">
+        每期的利息不滾入本金\n\n每期利息 = 本金 x 利率\n\n本利和 = 本金 x (1 + 週期 x 利率)
+    </string>
+
+    <string name="compound_interest_description">
+        每期的利息滾入本金作為下一期的本金\n\n每期利息 = 前一期本利和 x 利率\n\n本利和 = 本金 x (1 + 利率) ^ 週期
+    </string>
+
+    <string name="invest_interest_description">
+        每期的利息滾入本金之外，再加入每期投資金額，作為下一期的本金\n\n每期利息 = 前一期本利和 x 利率\n\n本利和＝本金 x (1 + 利率) ^ 週期\n
+        + 每期投資金額 x [\n
+        &#160;&#160;(1 + 利率) ^ (週期 - 1) + \n
+        &#160;&#160;(1 + 利率) ^ (週期 - 2) + \n
+        &#160;&#160;&#8230; + \n
+        &#160;&#160;(1 + 利率) ^ 0\n
+        ]
+    </string>
 </resources>

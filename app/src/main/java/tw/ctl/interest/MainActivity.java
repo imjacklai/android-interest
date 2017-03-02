@@ -14,8 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.MobileAds;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import tw.ctl.interest.calculation.CalculationFragment;
@@ -32,9 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        /** To initialize the Google Mobile Ads SDK at app launch. */
-        MobileAds.initialize(getApplicationContext(), getString(R.string.admob_id_1));
 
         setSupportActionBar(toolbar);
 

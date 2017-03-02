@@ -213,7 +213,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:visibility="gone"
-        ads:adUnitId="@string/admob_id_1"
+        ads:adUnitId="ca-app-pub-2754939326809910/4956864984"
         ads:adSize="SMART_BANNER"/>
 
 </RelativeLayout>
