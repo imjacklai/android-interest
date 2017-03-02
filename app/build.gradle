@@ -11,6 +11,7 @@ android {
         versionCode 5
         versionName "1.0.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        project.ext.set("archivesBaseName", "interest-" + defaultConfig.versionName);
     }
     buildTypes {
         release {
