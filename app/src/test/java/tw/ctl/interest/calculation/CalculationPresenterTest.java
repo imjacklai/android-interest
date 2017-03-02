@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import tw.ctl.interest.Entity;
+
 import static org.mockito.Mockito.verify;
 
 /**
@@ -33,14 +35,19 @@ public class CalculationPresenterTest {
 
     @Test
     public void calculate() throws Exception {
-        String principal = "1000";
-        String interest  = "10";
-        String period    = "10";
-        String invest    = "1000";
+        Entity entity = new Entity();
+        entity.principal = "1000";
+        entity.interest  = "10";
+        entity.period    = "10";
+        entity.invest    = "1000";
 
-        presenter.calculate(principal, interest, period, invest);
+        presenter.calculate(entity);
 
-        verify(view).onResult("2,000.00", "2,593.74", "18,531.17");
+        entity.simpleResult = "2,000.00";
+        entity.compoundResult = "2,593.74";
+        entity.investResult = "18,531.17";
+
+        verify(view).onResult(entity);
     }
 
 }

@@ -44,7 +44,6 @@ public class CalculationPresenter implements BasePresenter<CalculationView> {
         }
 
         view.onResult(entity);
-        entity.save();
     }
 
     private String calculateSimpleInterest(BigDecimal principal, BigDecimal interest, BigDecimal period) {

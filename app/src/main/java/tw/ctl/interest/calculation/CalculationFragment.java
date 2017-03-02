@@ -71,6 +71,8 @@ public class CalculationFragment extends Fragment implements CalculationView {
         cardView.setVisibility(View.VISIBLE);
 
         scrollView.smoothScrollTo(0, 0);
+
+        entity.save();
     }
 
     @OnClick(R.id.calculate_button)
