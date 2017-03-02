@@ -35,9 +35,8 @@ public class Entity extends RealmObject {
 
     public void delete() {
         Realm realm = Realm.getDefaultInstance();
-        Entity entity = realm.where(Entity.class).equalTo("date", date).findFirst();
         realm.beginTransaction();
-        entity.deleteFromRealm();
+        deleteFromRealm();
         realm.commitTransaction();
         realm.close();
     }

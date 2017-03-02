@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,6 +38,7 @@ public class CalculationFragment extends Fragment implements CalculationView {
     @BindView(R.id.interest_field)           EditText interestField;
     @BindView(R.id.period_field)             EditText periodField;
     @BindView(R.id.invest_field)             EditText investField;
+    @BindView(R.id.ad_view)                  AdView adView;
 
     private CalculationPresenter presenter;
 
@@ -57,6 +62,8 @@ public class CalculationFragment extends Fragment implements CalculationView {
 
     @Override
     public void onResult(Entity entity) {
+        setAdView();
+
         simpleResultText.setText(entity.simpleResult);
         compoundResultText.setText(entity.compoundResult);
         investResultText.setText(entity.investResult);
@@ -109,6 +116,16 @@ public class CalculationFragment extends Fragment implements CalculationView {
             if (entity.period.isEmpty()) periodField.setError("請輸入");
             return false;
         }
+    }
+
+    private void setAdView() {
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                adView.setVisibility(View.VISIBLE);
+            }
+        });
+        adView.loadAd(new AdRequest.Builder().build());
     }
 
 }

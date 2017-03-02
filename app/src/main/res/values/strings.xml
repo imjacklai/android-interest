@@ -11,4 +11,6 @@
     <string name="simple_interest_amount">單利本利和</string>
     <string name="compound_interest_amount">複利本利和</string>
     <string name="invest_interest_amount">定期定額複利本利和</string>
+
+    <string name="admob_id_1">ca-app-pub-2754939326809910/4956864984</string>
 </resources>

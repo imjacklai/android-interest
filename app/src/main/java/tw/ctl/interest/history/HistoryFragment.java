@@ -29,6 +29,7 @@ public class HistoryFragment extends Fragment {
     @BindView(R.id.description)   TextView description;
 
     private HistoryAdapter adapter;
+    private Realm realm;
 
     @Nullable
     @Override
@@ -36,10 +37,18 @@ public class HistoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
         ButterKnife.bind(this, view);
 
+        realm = Realm.getDefaultInstance();
+
         setRecyclerView();
         fetchData();
 
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        realm.close();
     }
 
     private void setRecyclerView() {
@@ -51,7 +60,6 @@ public class HistoryFragment extends Fragment {
     }
 
     private void fetchData() {
-        Realm realm = Realm.getDefaultInstance();
         RealmResults<Entity> entities = realm.where(Entity.class).findAllSorted("date", Sort.DESCENDING);
 
         recyclerView.setVisibility(entities.size() == 0 ? View.GONE : View.VISIBLE);
