@@ -10,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
@@ -27,6 +31,7 @@ public class HistoryFragment extends Fragment {
 
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
     @BindView(R.id.description)   TextView description;
+    @BindView(R.id.ad_view)       AdView adView;
 
     private HistoryAdapter adapter;
     private Realm realm;
@@ -41,6 +46,7 @@ public class HistoryFragment extends Fragment {
 
         setRecyclerView();
         fetchData();
+        setAdView();
 
         return view;
     }
@@ -78,6 +84,16 @@ public class HistoryFragment extends Fragment {
         });
 
         adapter.setEntities(entities);
+    }
+
+    private void setAdView() {
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                adView.setVisibility(View.VISIBLE);
+            }
+        });
+        adView.loadAd(new AdRequest.Builder().build());
     }
 
 }
