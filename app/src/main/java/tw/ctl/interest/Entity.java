@@ -34,6 +34,7 @@ public class Entity extends RealmObject {
     }
 
     public void delete() {
+        if (!this.isValid()) return;
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         deleteFromRealm();
