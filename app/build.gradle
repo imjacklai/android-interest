@@ -13,8 +13,24 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         project.ext.set("archivesBaseName", "interest-" + defaultConfig.versionName);
     }
+    signingConfigs {
+        release {
+            def keystoreFile = rootProject.file('keystore.properties')
+            def props = new Properties();
+            if (keystoreFile.canRead()) {
+                props.load(new FileInputStream(keystoreFile))
+                storeFile file(props['KEYSTORE_FILE'])
+                storePassword props['KEYSTORE_PASSWORD']
+                keyAlias props['KEYSTORE_ALIAS']
+                keyPassword props['KEYSTORE_ALIAS_PASSWORD']
+            } else {
+                println '\'keystore.properties\' not found!'
+            }
+        }
+    }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
