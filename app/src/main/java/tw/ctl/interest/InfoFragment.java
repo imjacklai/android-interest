@@ -25,13 +25,15 @@ public class InfoFragment extends Fragment {
 
     @BindView(R.id.ad_card_view) CardView adCardView;
 
+    private NativeExpressAdView adView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
         ButterKnife.bind(this, view);
 
-        NativeExpressAdView adView = new NativeExpressAdView(getActivity());
+        adView = new NativeExpressAdView(getActivity());
 
         adCardView.addView(adView);
 
@@ -56,6 +58,12 @@ public class InfoFragment extends Fragment {
         adView.loadAd(new AdRequest.Builder().build());
 
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        adView.destroy();
     }
 
 }

@@ -58,6 +58,7 @@ public class CalculationFragment extends Fragment implements CalculationView {
     public void onDestroyView() {
         super.onDestroyView();
         presenter.detachView();
+        adView.destroy();
     }
 
     @Override

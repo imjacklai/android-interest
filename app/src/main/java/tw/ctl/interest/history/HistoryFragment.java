@@ -55,6 +55,7 @@ public class HistoryFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         realm.close();
+        adView.destroy();
     }
 
     private void setRecyclerView() {
