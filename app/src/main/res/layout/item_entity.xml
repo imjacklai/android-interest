@@ -19,7 +19,7 @@
             android:text="@string/simple_interest_amount"/>
 
         <TextView
-            android:id="@+id/simple_interest_result"
+            android:id="@+id/simpleInterestResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
@@ -42,7 +42,7 @@
             android:text="@string/compound_interest_amount"/>
 
         <TextView
-            android:id="@+id/compound_interest_result"
+            android:id="@+id/compoundInterestResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
@@ -65,7 +65,7 @@
             android:text="@string/invest_interest_amount"/>
 
         <TextView
-            android:id="@+id/invest_interest_result"
+            android:id="@+id/investInterestResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"

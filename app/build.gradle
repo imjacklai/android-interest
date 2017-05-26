@@ -1,18 +1,24 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-noarg"
+apply plugin: "kotlin-allopen"
 apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
     defaultConfig {
         applicationId "tw.ctl.interest"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 7
-        versionName "1.0.6"
+        versionCode 8
+        versionName "1.0.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         project.ext.set("archivesBaseName", "interest-" + defaultConfig.versionName);
     }
+
     signingConfigs {
         release {
             def keystoreFile = rootProject.file('keystore.properties')
@@ -28,16 +34,13 @@ android {
             }
         }
     }
+
     buildTypes {
         release {
             signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 
@@ -46,21 +49,31 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:cardview-v7:25.3.0'
-    compile 'com.android.support:design:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
 
-    compile 'com.google.firebase:firebase-core:10.2.0'
-    compile 'com.google.firebase:firebase-ads:10.2.0'
-    compile 'com.google.firebase:firebase-crash:10.2.0'
-
-    compile 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.google.firebase:firebase-core:10.2.6'
+    compile 'com.google.firebase:firebase-ads:10.2.6'
+    compile 'com.google.firebase:firebase-crash:10.2.6'
 
     compile 'com.intuit.sdp:sdp-android:1.0.4'
 
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:2.7.10"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+
+noArg {
+    annotation("tw.ctl.interest.PoKo")
+}
+
+allOpen {
+    annotation("tw.ctl.interest.PoKo")
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+repositories {
+    mavenCentral()
+}

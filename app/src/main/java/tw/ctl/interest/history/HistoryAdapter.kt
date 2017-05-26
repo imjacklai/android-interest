@@ -1,0 +1,53 @@
+package tw.ctl.interest.history
+
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import io.realm.RealmResults
+import kotlinx.android.synthetic.main.item_entity.view.*
+import tw.ctl.interest.Entity
+import tw.ctl.interest.R
+
+/**
+ * Created by jacklai on 2017/3/1.
+ */
+
+class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+
+    private var entities: RealmResults<Entity>? = null
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_entity, parent, false)
+        return HistoryViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
+        holder.bindEntity(entities!![position])
+    }
+
+    override fun getItemCount(): Int {
+        return if (entities == null) 0 else entities!!.size
+    }
+
+    fun setEntities(entities: RealmResults<Entity>) {
+        this.entities = entities
+        notifyDataSetChanged()
+    }
+
+    class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        fun bindEntity(entity: Entity) {
+            with(entity) {
+                itemView.simpleInterestResult.text = entity.simpleResult
+                itemView.compoundInterestResult.text = entity.compoundResult
+                itemView.investInterestResult.text = entity.investResult
+                itemView.principal.text = entity.principal
+                itemView.interest.text = entity.interest
+                itemView.period.text = entity.period
+                itemView.invest.text = entity.invest
+            }
+        }
+
+    }
+
+}
