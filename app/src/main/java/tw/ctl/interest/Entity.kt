@@ -4,17 +4,13 @@ import io.realm.Realm
 import io.realm.RealmObject
 import java.util.*
 
-/**
- * Created by jacklai on 2017/5/26.
- */
-
 annotation class PoKo
 
 @PoKo data class Entity(
-        var principal: String? = null,
-        var interest: String? = null,
-        var period: String? = null,
-        var invest: String? = null,
+        var principal: String,
+        var interest: String,
+        var period: String,
+        var invest: String,
         var simpleResult: String? = null,
         var compoundResult: String? = null,
         var investResult: String? = null,

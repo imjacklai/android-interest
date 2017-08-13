@@ -13,10 +13,6 @@ import kotlinx.android.synthetic.main.fragment_calculation.*
 import tw.ctl.interest.Entity
 import tw.ctl.interest.R
 
-/**
- * Created by jacklai on 2017/3/1.
- */
-
 class CalculationFragment : Fragment(), CalculationView {
 
     private val presenter = CalculationPresenter()
@@ -27,9 +23,7 @@ class CalculationFragment : Fragment(), CalculationView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         presenter.attachView(this)
-
         calculateButton.setOnClickListener { onCalculateButtonClicked() }
         clearButton.setOnClickListener { onClearButtonClicked() }
     }
@@ -55,11 +49,12 @@ class CalculationFragment : Fragment(), CalculationView {
     }
 
     fun onCalculateButtonClicked() {
-        val entity = Entity()
-        entity.principal = principalField.text.toString()
-        entity.interest = interestField.text.toString()
-        entity.period = periodField.text.toString()
-        entity.invest = investField.text.toString()
+        val entity = Entity(
+                principalField.text.toString(),
+                interestField.text.toString(),
+                periodField.text.toString(),
+                investField.text.toString()
+        )
 
         if (!checkFieldsValid(entity)) return
 
@@ -85,12 +80,12 @@ class CalculationFragment : Fragment(), CalculationView {
     }
 
     private fun checkFieldsValid(entity: Entity): Boolean {
-        if (!entity.principal!!.isEmpty() && !entity.interest!!.isEmpty() && !entity.period!!.isEmpty()) {
+        if (entity.principal.isNotEmpty() && entity.interest.isNotEmpty() && entity.period.isNotEmpty()) {
             return true
         } else {
-            if (entity.principal!!.isEmpty()) principalField.error = "請輸入"
-            if (entity.interest!!.isEmpty()) interestField.error = "請輸入"
-            if (entity.period!!.isEmpty()) periodField.error = "請輸入"
+            if (entity.principal.isEmpty()) principalField.error = "請輸入"
+            if (entity.interest.isEmpty()) interestField.error = "請輸入"
+            if (entity.period.isEmpty()) periodField.error = "請輸入"
             return false
         }
     }

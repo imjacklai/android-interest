@@ -13,6 +13,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import tw.ctl.interest.calculation.CalculationFragment
 import tw.ctl.interest.history.HistoryFragment
+import tw.ctl.interest.info.InfoFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -3,36 +3,31 @@ package tw.ctl.interest.calculation
 import java.math.BigDecimal
 import java.text.NumberFormat
 
-import tw.ctl.interest.BasePresenter
 import tw.ctl.interest.Entity
 
-/**
- * Created by jacklai on 2017/3/1.
- */
-
-class CalculationPresenter : BasePresenter<CalculationView> {
+class CalculationPresenter {
 
     private var view: CalculationView? = null
 
-    override fun attachView(view: CalculationView) {
+    fun attachView(view: CalculationView) {
         this.view = view
     }
 
-    override fun detachView() {
+    fun detachView() {
         view = null
     }
 
     fun calculate(entity: Entity) {
         val principalDecimal = BigDecimal(entity.principal)
-        val interestDecimal = BigDecimal((java.lang.Double.valueOf(entity.interest)!! / 100).toString())
+        val interestDecimal = BigDecimal((entity.interest.toDouble() / 100).toString())
         val periodDecimal = BigDecimal(entity.period)
-        val periodInt = Integer.valueOf(entity.period)!!
+        val periodInt = entity.period.toInt()
 
         entity.principal = formatDecimal(principalDecimal)
         entity.simpleResult = calculateSimpleInterest(principalDecimal, interestDecimal, periodDecimal)
         entity.compoundResult = calculateCompoundInterest(principalDecimal, interestDecimal, periodInt)
 
-        if (entity.invest!!.isEmpty()) {
+        if (entity.invest.isEmpty()) {
             entity.invest = "---"
             entity.investResult = "---"
         } else {

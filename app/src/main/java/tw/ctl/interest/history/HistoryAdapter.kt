@@ -9,10 +9,6 @@ import kotlinx.android.synthetic.main.item_entity.view.*
 import tw.ctl.interest.Entity
 import tw.ctl.interest.R
 
-/**
- * Created by jacklai on 2017/3/1.
- */
-
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     private var entities: RealmResults<Entity>? = null

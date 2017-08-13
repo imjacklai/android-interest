@@ -1,4 +1,4 @@
-package tw.ctl.interest
+package tw.ctl.interest.info
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -11,10 +11,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.NativeExpressAdView
 import kotlinx.android.synthetic.main.fragment_info.*
-
-/**
- * Created by jacklai on 2017/3/1.
- */
+import tw.ctl.interest.R
 
 class InfoFragment : Fragment() {
 

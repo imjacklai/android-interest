@@ -14,10 +14,6 @@ import kotlinx.android.synthetic.main.fragment_history.*
 import tw.ctl.interest.Entity
 import tw.ctl.interest.R
 
-/**
- * Created by jacklai on 2017/3/1.
- */
-
 class HistoryFragment : Fragment() {
 
     private var adapter: HistoryAdapter? = null
