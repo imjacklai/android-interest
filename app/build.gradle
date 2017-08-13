@@ -19,17 +19,17 @@ android {
 
     signingConfigs {
         release {
-            def keystoreFile = rootProject.file('keystore.properties')
-            def props = new Properties();
-            if (keystoreFile.canRead()) {
-                props.load(new FileInputStream(keystoreFile))
-                storeFile file(props['KEYSTORE_FILE'])
-                storePassword props['KEYSTORE_PASSWORD']
-                keyAlias props['KEYSTORE_ALIAS']
-                keyPassword props['KEYSTORE_ALIAS_PASSWORD']
-            } else {
-                println '\'keystore.properties\' not found!'
-            }
+//            def keystoreFile = rootProject.file('keystore.properties')
+//            def props = new Properties();
+//            if (keystoreFile.canRead()) {
+//                props.load(new FileInputStream(keystoreFile))
+//                storeFile file(props['KEYSTORE_FILE'])
+//                storePassword props['KEYSTORE_PASSWORD']
+//                keyAlias props['KEYSTORE_ALIAS']
+//                keyPassword props['KEYSTORE_ALIAS_PASSWORD']
+//            } else {
+//                println '\'keystore.properties\' not found!'
+//            }
         }
     }
 
@@ -39,6 +39,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    if (project.hasProperty('storeFile') && project.hasProperty('storePassword')
+            && project.hasProperty('keyPassword') && project.hasProperty('keyAlias')) {
+        android.signingConfigs.release.storeFile = file(storeFile)
+        android.signingConfigs.release.storePassword = storePassword
+        android.signingConfigs.release.keyPassword = keyPassword
+        android.signingConfigs.release.keyAlias = keyAlias
+    } else {
+        android.buildTypes.release.signingConfig = null
     }
 }
 
