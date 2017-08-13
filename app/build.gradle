@@ -1,8 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: "kotlin-noarg"
-apply plugin: "kotlin-allopen"
 apply plugin: 'realm-android'
 
 android {
@@ -13,8 +11,8 @@ android {
         applicationId "tw.ctl.interest"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 8
-        versionName "1.0.7"
+        versionCode 9
+        versionName "1.0.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         project.ext.set("archivesBaseName", "interest-" + defaultConfig.versionName);
     }
@@ -65,16 +63,4 @@ dependencies {
     testCompile "org.mockito:mockito-core:2.7.10"
 }
 
-noArg {
-    annotation("tw.ctl.interest.PoKo")
-}
-
-allOpen {
-    annotation("tw.ctl.interest.PoKo")
-}
-
 apply plugin: 'com.google.gms.google-services'
-
-repositories {
-    mavenCentral()
-}

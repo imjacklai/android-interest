@@ -4,16 +4,14 @@ import io.realm.Realm
 import io.realm.RealmObject
 import java.util.*
 
-annotation class PoKo
-
-@PoKo data class Entity(
-        var principal: String,
-        var interest: String,
-        var period: String,
-        var invest: String,
-        var simpleResult: String? = null,
-        var compoundResult: String? = null,
-        var investResult: String? = null,
+open class Entity(
+        var principal: String = "",
+        var interest: String = "",
+        var period: String = "",
+        var invest: String = "",
+        var simpleResult: String = "",
+        var compoundResult: String = "",
+        var investResult: String = "",
         var date: Date? = null
 ) : RealmObject() {
 
