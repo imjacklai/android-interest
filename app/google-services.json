@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "585709080727",
+    "firebase_url": "https://interest-e88da.firebaseio.com",
+    "project_id": "interest-e88da",
+    "storage_bucket": "interest-e88da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585709080727:android:1907f65ddc97b8f2",
+        "android_client_info": {
+          "package_name": "tw.ctl.interest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585709080727-nio4pndg420dm66chu4nikt1qojdj46q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVWMyTQMpx_Q2oxF0jVarN-ULi8nwTG6w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
