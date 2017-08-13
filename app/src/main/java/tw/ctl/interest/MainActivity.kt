@@ -1,5 +1,6 @@
 package tw.ctl.interest
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -35,12 +36,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun getTabView(position: Int): View {
         val view = LayoutInflater.from(this).inflate(R.layout.tab, tabLayout, false)
-        val tabTitle = view.findViewById(R.id.tabTitle) as TextView
-        tabTitle.text = if (position == 0) "試算" else if (position == 1) "紀錄" else "資訊"
-        val drawable = ContextCompat.getDrawable(this,
-                if (position == 0) R.drawable.tab_calculator
-                else if (position == 1) R.drawable.tab_history
-                else R.drawable.tab_info)
+        val tabTitle = view.findViewById<TextView>(R.id.tabTitle)
+        val drawable: Drawable
+
+        when (position) {
+            0 -> {
+                tabTitle.text = "試算"
+                drawable = ContextCompat.getDrawable(this, R.drawable.tab_calculator)
+            }
+            1 -> {
+                tabTitle.text = "紀錄"
+                drawable = ContextCompat.getDrawable(this, R.drawable.tab_history)
+            }
+            else -> {
+                tabTitle.text = "資訊"
+                drawable = ContextCompat.getDrawable(this, R.drawable.tab_info)
+            }
+        }
+
         drawable.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
         tabTitle.setCompoundDrawables(null, drawable, null, null)
         return view
