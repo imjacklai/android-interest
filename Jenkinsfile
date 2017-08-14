@@ -6,7 +6,7 @@ node {
 
   stage('move file') {
     echo 'move file'
-    sh "mv /var/lib/jenkins/google-services.json ${env.WORKSPACE}/app/"
+    sh "sudo cp /home/imjacklai/google-services.json ${env.WORKSPACE}/app/"
   }
 
   stage('clean') {
