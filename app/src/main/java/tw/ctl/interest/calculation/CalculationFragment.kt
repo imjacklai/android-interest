@@ -17,9 +17,8 @@ class CalculationFragment : Fragment(), CalculationView {
 
     private val presenter = CalculationPresenter()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_calculation, container, false)
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View?
+        = inflater?.inflate(R.layout.fragment_calculation, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,27 +27,23 @@ class CalculationFragment : Fragment(), CalculationView {
         clearButton.setOnClickListener { onClearButtonClicked() }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         presenter.detachView()
         adView.destroy()
     }
 
     override fun onResult(entity: Entity) {
         setAdView()
-
         simpleInterestResult.text = entity.simpleResult
         compoundInterestResult.text = entity.compoundResult
         investInterestResult.text = entity.investResult
-
         cardView.visibility = View.VISIBLE
-
         scrollView.smoothScrollTo(0, 0)
-
         entity.save()
     }
 
-    fun onCalculateButtonClicked() {
+    private fun onCalculateButtonClicked() {
         val entity = Entity(
                 principalField.text.toString(),
                 interestField.text.toString(),
@@ -72,7 +67,7 @@ class CalculationFragment : Fragment(), CalculationView {
         presenter.calculate(entity)
     }
 
-    fun onClearButtonClicked() {
+    private fun onClearButtonClicked() {
         principalField.setText("")
         interestField.setText("")
         periodField.setText("")
@@ -80,13 +75,13 @@ class CalculationFragment : Fragment(), CalculationView {
     }
 
     private fun checkFieldsValid(entity: Entity): Boolean {
-        if (entity.principal.isNotEmpty() && entity.interest.isNotEmpty() && entity.period.isNotEmpty()) {
-            return true
+        return if (entity.principal.isNotEmpty() && entity.interest.isNotEmpty() && entity.period.isNotEmpty()) {
+            true
         } else {
             if (entity.principal.isEmpty()) principalField.error = "請輸入"
             if (entity.interest.isEmpty()) interestField.error = "請輸入"
             if (entity.period.isEmpty()) periodField.error = "請輸入"
-            return false
+            false
         }
     }
 

@@ -39,17 +39,15 @@ class CalculationPresenter {
         view!!.onResult(entity)
     }
 
-    private fun calculateSimpleInterest(principal: BigDecimal, interest: BigDecimal, period: BigDecimal): String {
-        return formatDecimal(principal.add(principal.multiply(interest.multiply(period))))
-    }
+    private fun calculateSimpleInterest(principal: BigDecimal, interest: BigDecimal, period: BigDecimal): String
+        = formatDecimal(principal.add(principal.multiply(interest.multiply(period))))
 
-    private fun calculateCompoundInterest(principal: BigDecimal, interest: BigDecimal, period: Int): String {
-        return formatDecimal(principal.multiply(BigDecimal.ONE.add(interest).pow(period)))
-    }
+    private fun calculateCompoundInterest(principal: BigDecimal, interest: BigDecimal, period: Int): String
+        = formatDecimal(principal.multiply(BigDecimal.ONE.add(interest).pow(period)))
 
     private fun calculateInvestInterest(principal: BigDecimal, interest: BigDecimal, period: Int, invest: BigDecimal): String {
         var result = principal
-        for (i in 0..period - 1) {
+        for (i in 0 until period) {
             result = result.multiply(BigDecimal.ONE.add(interest)).add(invest)
         }
         return formatDecimal(result)
