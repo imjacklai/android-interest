@@ -12,7 +12,7 @@ open class Entity(
         var simpleResult: String = "",
         var compoundResult: String = "",
         var investResult: String = "",
-        var date: Date? = null
+        private var date: Date? = null
 ) : RealmObject() {
 
     fun save() {

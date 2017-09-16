@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout.setupWithViewPager(viewPager)
 
         /** Set each tab view. */
-        for (i in 0..tabLayout.tabCount - 1) {
+        for (i in 0 until tabLayout.tabCount) {
             val tab = tabLayout.getTabAt(i) ?: continue
             tab.customView = getTabView(i)
         }
@@ -62,17 +62,14 @@ class MainActivity : AppCompatActivity() {
 
     internal inner class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
-        override fun getItem(position: Int): Fragment {
-            when (position) {
-                1 -> return HistoryFragment()
-                2 -> return InfoFragment()
-                else -> return CalculationFragment()
-            }
-        }
+        override fun getItem(position: Int): Fragment
+                = when (position) {
+                    1 -> HistoryFragment()
+                    2 -> InfoFragment()
+                    else -> CalculationFragment()
+                }
 
-        override fun getCount(): Int {
-            return 3
-        }
+        override fun getCount(): Int = 3
 
     }
 
