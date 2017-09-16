@@ -36,7 +36,7 @@ class CalculationPresenter {
             entity.investResult = calculateInvestInterest(principalDecimal, interestDecimal, periodInt, investDecimal)
         }
 
-        view!!.onResult(entity)
+        view?.onResult(entity)
     }
 
     private fun calculateSimpleInterest(principal: BigDecimal, interest: BigDecimal, period: BigDecimal): String

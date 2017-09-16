@@ -8,33 +8,43 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
-import io.realm.Realm
-import io.realm.Sort
+import io.realm.RealmResults
 import kotlinx.android.synthetic.main.fragment_history.*
 import tw.ctl.interest.Entity
 import tw.ctl.interest.R
 
-class HistoryFragment : Fragment() {
+class HistoryFragment : Fragment(), HistoryView {
 
     private var adapter: HistoryAdapter? = null
-    private val realm = Realm.getDefaultInstance()
+    private val presenter = HistoryPresenter()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_history, container, false)
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View?
+            = inflater?.inflate(R.layout.fragment_history, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setRecyclerView()
-        fetchData()
         setAdView()
+        presenter.attachView(this)
+        presenter.fetchLocalData()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        presenter.detachView()
         recyclerView.adapter = null
-        realm.close()
         adView.destroy()
+    }
+
+    override fun onHistories(histories: RealmResults<Entity>) {
+        if (histories.size == 0) {
+            recyclerView.visibility = View.GONE
+            description.visibility = View.VISIBLE
+        } else {
+            recyclerView.visibility = View.VISIBLE
+            description.visibility = View.GONE
+        }
+        adapter?.setEntities(histories)
     }
 
     private fun setRecyclerView() {
@@ -43,24 +53,6 @@ class HistoryFragment : Fragment() {
         recyclerView.layoutManager = manager
         adapter = HistoryAdapter()
         recyclerView.adapter = adapter
-    }
-
-    private fun fetchData() {
-        val entities = realm.where<Entity>(Entity::class.java).findAllSorted("date", Sort.DESCENDING)
-
-        recyclerView.visibility = if (entities.size == 0) View.GONE else View.VISIBLE
-        description.visibility = if (entities.size == 0) View.VISIBLE else View.GONE
-
-        entities.addChangeListener { elements ->
-            recyclerView.visibility = if (elements.size == 0) View.GONE else View.VISIBLE
-            description.visibility = if (elements.size == 0) View.VISIBLE else View.GONE
-
-            if (elements.size > 20) elements.last().delete()
-
-            adapter?.notifyDataSetChanged()
-        }
-
-        adapter?.setEntities(entities)
     }
 
     private fun setAdView() {

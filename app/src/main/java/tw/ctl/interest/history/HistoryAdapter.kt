@@ -22,9 +22,7 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
         holder.bindEntity(entities!![position])
     }
 
-    override fun getItemCount(): Int {
-        return if (entities == null) 0 else entities!!.size
-    }
+    override fun getItemCount(): Int = entities?.size ?: 0
 
     fun setEntities(entities: RealmResults<Entity>) {
         this.entities = entities
