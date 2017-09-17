@@ -32,16 +32,15 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
     class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindEntity(entity: Entity) {
             with(entity) {
-                itemView.simpleInterestResult.text = entity.simpleResult
-                itemView.compoundInterestResult.text = entity.compoundResult
-                itemView.investInterestResult.text = entity.investResult
+                itemView.simpleInterest.text = entity.simpleResult
+                itemView.compoundInterest.text = entity.compoundResult
+                itemView.investInterest.text = entity.investResult
                 itemView.principal.text = entity.principal
                 itemView.interest.text = entity.interest
                 itemView.period.text = entity.period
                 itemView.invest.text = entity.invest
             }
         }
-
     }
 
 }

@@ -33,7 +33,7 @@ class HistoryFragment : Fragment(), HistoryView {
         super.onDestroyView()
         presenter.detachView()
         recyclerView.adapter = null
-        adView.destroy()
+        adView?.destroy()
     }
 
     override fun onHistories(histories: RealmResults<Entity>) {
@@ -56,12 +56,12 @@ class HistoryFragment : Fragment(), HistoryView {
     }
 
     private fun setAdView() {
-        adView.adListener = object : AdListener() {
+        adView?.adListener = object : AdListener() {
             override fun onAdLoaded() {
-                adView.visibility = View.VISIBLE
+                adView?.visibility = View.VISIBLE
             }
         }
-        adView.loadAd(AdRequest.Builder().build())
+        adView?.loadAd(AdRequest.Builder().build())
     }
 
 }

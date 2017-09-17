@@ -30,7 +30,7 @@ class CalculationFragment : Fragment(), CalculationView {
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
-        adView.destroy()
+        adView?.destroy()
     }
 
     override fun onResult(entity: Entity) {
@@ -86,12 +86,12 @@ class CalculationFragment : Fragment(), CalculationView {
     }
 
     private fun setAdView() {
-        adView.adListener = object : AdListener() {
+        adView?.adListener = object : AdListener() {
             override fun onAdLoaded() {
-                adView.visibility = View.VISIBLE
+                adView?.visibility = View.VISIBLE
             }
         }
-        adView.loadAd(AdRequest.Builder().build())
+        adView?.loadAd(AdRequest.Builder().build())
     }
 
 }
