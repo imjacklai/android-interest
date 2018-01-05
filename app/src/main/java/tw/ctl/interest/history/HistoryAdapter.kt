@@ -19,7 +19,9 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bindEntity(entities!![position])
+        if (entities?.get(position) != null) {
+            holder.bindEntity(entities!![position]!!)
+        }
     }
 
     override fun getItemCount(): Int = entities?.size ?: 0

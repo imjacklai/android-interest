@@ -19,10 +19,10 @@ class HistoryPresenter {
     }
 
     fun fetchLocalData() {
-        val entities = realm.where<Entity>(Entity::class.java).findAllSorted("date", Sort.DESCENDING)
+        val entities = realm.where<Entity>(Entity::class.java).sort("date", Sort.DESCENDING).findAll()
 
         entities.addChangeListener { elements ->
-            if (elements.size > 20) elements.last().delete()
+            if (elements.size > 20) elements.last()?.delete()
             view?.onHistories(elements)
         }
 
