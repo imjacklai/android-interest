@@ -11,24 +11,24 @@ android {
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 11
-        versionName "1.0.7.2"
+        versionName "1.0.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        project.ext.set("archivesBaseName", "interest-" + defaultConfig.versionName);
+        project.ext.set("archivesBaseName", "interest-" + defaultConfig.versionName)
     }
 
     signingConfigs {
         release {
-//            def keystoreFile = rootProject.file('keystore.properties')
-//            def props = new Properties();
-//            if (keystoreFile.canRead()) {
-//                props.load(new FileInputStream(keystoreFile))
-//                storeFile file(props['KEYSTORE_FILE'])
-//                storePassword props['KEYSTORE_PASSWORD']
-//                keyAlias props['KEYSTORE_ALIAS']
-//                keyPassword props['KEYSTORE_ALIAS_PASSWORD']
-//            } else {
-//                println '\'keystore.properties\' not found!'
-//            }
+            def keystoreFile = rootProject.file('keystore.properties')
+            def props = new Properties()
+            if (keystoreFile.canRead()) {
+                props.load(new FileInputStream(keystoreFile))
+                storeFile file(props['KEYSTORE_FILE'])
+                storePassword props['KEYSTORE_PASSWORD']
+                keyAlias props['KEYSTORE_ALIAS']
+                keyPassword props['KEYSTORE_ALIAS_PASSWORD']
+            } else {
+                println '\'keystore.properties\' not found!'
+            }
         }
     }
 
@@ -40,15 +40,15 @@ android {
         }
     }
 
-    if (project.hasProperty('storeFile') && project.hasProperty('storePassword')
-            && project.hasProperty('keyPassword') && project.hasProperty('keyAlias')) {
-        android.signingConfigs.release.storeFile = file(storeFile)
-        android.signingConfigs.release.storePassword = storePassword
-        android.signingConfigs.release.keyPassword = keyPassword
-        android.signingConfigs.release.keyAlias = keyAlias
-    } else {
-        android.buildTypes.release.signingConfig = null
-    }
+//    if (project.hasProperty('storeFile') && project.hasProperty('storePassword')
+//            && project.hasProperty('keyPassword') && project.hasProperty('keyAlias')) {
+//        android.signingConfigs.release.storeFile = file(storeFile)
+//        android.signingConfigs.release.storePassword = storePassword
+//        android.signingConfigs.release.keyPassword = keyPassword
+//        android.signingConfigs.release.keyAlias = keyAlias
+//    } else {
+//        android.buildTypes.release.signingConfig = null
+//    }
 }
 
 dependencies {
