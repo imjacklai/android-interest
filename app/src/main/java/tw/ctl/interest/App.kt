@@ -12,7 +12,10 @@ class App : Application() {
 
         /** Setup Realm. */
         Realm.init(this)
-        Realm.setDefaultConfiguration(RealmConfiguration.Builder().build())
+        Realm.setDefaultConfiguration(RealmConfiguration.Builder()
+                .schemaVersion(1)
+                .migration(Migration())
+                .build())
     }
 
 }
