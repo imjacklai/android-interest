@@ -18,10 +18,10 @@ class HistoryFragment : Fragment(), HistoryView {
     private var adapter: HistoryAdapter? = null
     private val presenter = HistoryPresenter()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
             = inflater?.inflate(R.layout.fragment_history, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setRecyclerView()
         setAdView()

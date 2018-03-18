@@ -43,15 +43,15 @@ class MainActivity : AppCompatActivity() {
         when (position) {
             0 -> {
                 tabTitle.text = "試算"
-                drawable = ContextCompat.getDrawable(this, R.drawable.tab_calculator)
+                drawable = ContextCompat.getDrawable(this, R.drawable.tab_calculator)!!
             }
             1 -> {
                 tabTitle.text = "紀錄"
-                drawable = ContextCompat.getDrawable(this, R.drawable.tab_history)
+                drawable = ContextCompat.getDrawable(this, R.drawable.tab_history)!!
             }
             else -> {
                 tabTitle.text = "資訊"
-                drawable = ContextCompat.getDrawable(this, R.drawable.tab_info)
+                drawable = ContextCompat.getDrawable(this, R.drawable.tab_info)!!
             }
         }
 

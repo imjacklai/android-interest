@@ -17,20 +17,20 @@ class InfoFragment : Fragment() {
 
     private var adView: NativeExpressAdView? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
             = inflater?.inflate(R.layout.fragment_info, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         adView = NativeExpressAdView(activity)
         adCardView.addView(adView)
 
         val displayMetrics = DisplayMetrics()
-        activity.windowManager.defaultDisplay.getMetrics(displayMetrics)
+        activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
         val screenWidth = displayMetrics.widthPixels
 
-        val scale = activity.resources.displayMetrics.density
+        val scale = activity!!.resources.displayMetrics.density
         val adWidth = ((screenWidth - resources.getDimension(R.dimen._20sdp).toInt()) / scale).toInt()
 
         adView?.adSize = AdSize(adWidth, 132)

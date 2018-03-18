@@ -17,10 +17,10 @@ class CalculationFragment : Fragment(), CalculationView {
 
     private val presenter = CalculationPresenter()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View?
-        = inflater?.inflate(R.layout.fragment_calculation, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+            = inflater.inflate(R.layout.fragment_calculation, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachView(this)
         calculateButton.setOnClickListener { onCalculateButtonClicked() }
@@ -53,9 +53,9 @@ class CalculationFragment : Fragment(), CalculationView {
 
         if (!checkFieldsValid(entity)) return
 
-        val view = activity.currentFocus
+        val view = activity?.currentFocus
         if (view != null) {
-            val inputMethodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val inputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
         }
 
