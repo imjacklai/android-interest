@@ -1,15 +1,9 @@
 package tw.ctl.interest
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import tw.ctl.interest.calculation.CalculationFragment
 import tw.ctl.interest.history.HistoryFragment
@@ -23,54 +17,62 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
-        viewPager.offscreenPageLimit = 2
-
-        tabLayout.setupWithViewPager(viewPager)
-
-        /** Set each tab view. */
-        for (i in 0 until tabLayout.tabCount) {
-            val tab = tabLayout.getTabAt(i) ?: continue
-            tab.customView = getTabView(i)
+        bottomNavigationView.setOnNavigationItemSelectedListener { item: MenuItem ->
+            selectFragment(item.itemId)
+            true
         }
+
+        selectFragment(0)
     }
 
-    private fun getTabView(position: Int): View {
-        val view = LayoutInflater.from(this).inflate(R.layout.tab, tabLayout, false)
-        val tabTitle = view.findViewById<TextView>(R.id.tabTitle)
-        val drawable: Drawable
-
-        when (position) {
-            0 -> {
-                tabTitle.text = "試算"
-                drawable = ContextCompat.getDrawable(this, R.drawable.tab_calculator)!!
+    private fun selectFragment(itemId: Int) {
+        when (itemId) {
+            R.id.calculation -> {
+                val fragment = supportFragmentManager.findFragmentByTag(CalculationFragment::class.java.simpleName)
+                if (fragment == null) {
+                    switchFragment(CalculationFragment())
+                } else {
+                    switchFragment(fragment)
+                }
             }
-            1 -> {
-                tabTitle.text = "紀錄"
-                drawable = ContextCompat.getDrawable(this, R.drawable.tab_history)!!
+            R.id.history -> {
+                val fragment = supportFragmentManager.findFragmentByTag(HistoryFragment::class.java.simpleName)
+                if (fragment == null) {
+                    switchFragment(HistoryFragment())
+                } else {
+                    switchFragment(fragment)
+                }
+            }
+            R.id.info -> {
+                val fragment = supportFragmentManager.findFragmentByTag(InfoFragment::class.java.simpleName)
+                if (fragment == null) {
+                    switchFragment(InfoFragment())
+                } else {
+                    switchFragment(fragment)
+                }
             }
             else -> {
-                tabTitle.text = "資訊"
-                drawable = ContextCompat.getDrawable(this, R.drawable.tab_info)!!
+                switchFragment(CalculationFragment())
             }
         }
-
-        drawable.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
-        tabTitle.setCompoundDrawables(null, drawable, null, null)
-        return view
     }
 
-    internal inner class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+    private fun switchFragment(fragment: Fragment) {
+        val fragments = supportFragmentManager.fragments
 
-        override fun getItem(position: Int): Fragment
-                = when (position) {
-                    1 -> HistoryFragment()
-                    2 -> InfoFragment()
-                    else -> CalculationFragment()
-                }
+        val transaction = supportFragmentManager.beginTransaction()
 
-        override fun getCount(): Int = 3
+        for (f in fragments) {
+            transaction.hide(f)
+        }
 
+        if (fragment.isAdded) {
+            transaction.show(fragment)
+        } else {
+            transaction.add(R.id.container, fragment, fragment.javaClass.simpleName)
+        }
+
+        transaction.commit()
     }
 
 }

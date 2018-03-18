@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">複利試算</string>
 
+    <string name="calculation">試算</string>
+    <string name="history">紀錄</string>
+    <string name="info">資訊</string>
+
     <string name="principal">本金</string>
     <string name="interest">年利率(%)</string>
     <string name="period">週期(年)</string>
