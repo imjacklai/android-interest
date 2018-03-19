@@ -1,8 +1,14 @@
 package tw.ctl.interest.calculation
 
+import android.content.Context
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import tw.ctl.interest.model.Record
+import tw.ctl.interest.model.RecordDatabase
 import java.math.BigDecimal
 import java.text.NumberFormat
+import java.util.*
 
 class CalculationPresenter {
 
@@ -36,6 +42,15 @@ class CalculationPresenter {
         }
 
         view?.onResult(record)
+    }
+
+    fun save(context: Context, record: Record) {
+        Completable.fromAction {
+            record.date = Date()
+            RecordDatabase.getInstance(context)?.recordDao()?.insert(record)
+        }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {  }
     }
 
     private fun calculateSimpleInterest(principal: BigDecimal, interest: BigDecimal, period: BigDecimal): String

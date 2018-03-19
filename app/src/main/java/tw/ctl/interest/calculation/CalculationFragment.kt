@@ -9,14 +9,9 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
-import io.reactivex.Completable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_calculation.*
 import tw.ctl.interest.R
 import tw.ctl.interest.model.Record
-import tw.ctl.interest.model.RecordDatabase
-import java.util.*
 
 class CalculationFragment : Fragment(), CalculationView {
 
@@ -45,13 +40,7 @@ class CalculationFragment : Fragment(), CalculationView {
         investInterestResult.text = record.investResult
         cardView.visibility = View.VISIBLE
         scrollView.smoothScrollTo(0, 0)
-
-        Completable.fromAction {
-            record.date = Date()
-            RecordDatabase.getInstance(context!!)?.recordDao()?.insert(record)
-        }.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {  }
+        presenter.save(context!!, record)
     }
 
     private fun onCalculateButtonClicked() {
