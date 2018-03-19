@@ -8,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
-import io.realm.RealmResults
 import kotlinx.android.synthetic.main.fragment_history.*
-import tw.ctl.interest.Entity
 import tw.ctl.interest.R
+import tw.ctl.interest.model.Record
 
 class HistoryFragment : Fragment(), HistoryView {
 
@@ -19,14 +18,19 @@ class HistoryFragment : Fragment(), HistoryView {
     private val presenter = HistoryPresenter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
-            = inflater?.inflate(R.layout.fragment_history, container, false)
+            = inflater.inflate(R.layout.fragment_history, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setRecyclerView()
         setAdView()
         presenter.attachView(this)
-        presenter.fetchLocalData()
+        presenter.fetchLocalData(context!!)
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        presenter.fetchLocalData(context!!)
     }
 
     override fun onDestroyView() {
@@ -36,15 +40,15 @@ class HistoryFragment : Fragment(), HistoryView {
         adView?.destroy()
     }
 
-    override fun onHistories(histories: RealmResults<Entity>) {
-        if (histories.size == 0) {
+    override fun onFetchRecords(records: List<Record>) {
+        if (records.isEmpty()) {
             recyclerView.visibility = View.GONE
             description.visibility = View.VISIBLE
         } else {
             recyclerView.visibility = View.VISIBLE
             description.visibility = View.GONE
         }
-        adapter?.setEntities(histories)
+        adapter?.setRecords(records)
     }
 
     private fun setRecyclerView() {

@@ -4,14 +4,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.realm.RealmResults
 import kotlinx.android.synthetic.main.item_entity.view.*
-import tw.ctl.interest.Entity
 import tw.ctl.interest.R
+import tw.ctl.interest.model.Record
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
-    private var entities: RealmResults<Entity>? = null
+    private var records = listOf<Record>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_entity, parent, false)
@@ -19,28 +18,26 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        if (entities?.get(position) != null) {
-            holder.bindEntity(entities!![position]!!)
-        }
+        holder.bindRecord(records[position])
     }
 
-    override fun getItemCount(): Int = entities?.size ?: 0
+    override fun getItemCount(): Int = records.size
 
-    fun setEntities(entities: RealmResults<Entity>) {
-        this.entities = entities
+    fun setRecords(records: List<Record>) {
+        this.records = records
         notifyDataSetChanged()
     }
 
     class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindEntity(entity: Entity) {
-            with(entity) {
-                itemView.simpleInterest.text = entity.simpleResult
-                itemView.compoundInterest.text = entity.compoundResult
-                itemView.investInterest.text = entity.investResult
-                itemView.principal.text = entity.principal
-                itemView.interest.text = entity.interest
-                itemView.period.text = entity.period
-                itemView.invest.text = entity.invest
+        fun bindRecord(record: Record) {
+            with(itemView) {
+                simpleInterest.text = record.simpleResult
+                compoundInterest.text = record.compoundResult
+                investInterest.text = record.investResult
+                principal.text = record.principal
+                interest.text = record.interest
+                period.text = record.period
+                invest.text = record.invest
             }
         }
     }

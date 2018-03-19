@@ -1,7 +1,7 @@
 package tw.ctl.interest.calculation
 
-import tw.ctl.interest.Entity
+import tw.ctl.interest.model.Record
 
 interface CalculationView {
-    fun onResult(entity: Entity)
+    fun onResult(record: Record)
 }

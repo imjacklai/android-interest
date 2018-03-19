@@ -9,9 +9,14 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_calculation.*
-import tw.ctl.interest.Entity
 import tw.ctl.interest.R
+import tw.ctl.interest.model.Record
+import tw.ctl.interest.model.RecordDatabase
+import java.util.*
 
 class CalculationFragment : Fragment(), CalculationView {
 
@@ -33,25 +38,31 @@ class CalculationFragment : Fragment(), CalculationView {
         adView?.destroy()
     }
 
-    override fun onResult(entity: Entity) {
+    override fun onResult(record: Record) {
         setAdView()
-        simpleInterestResult.text = entity.simpleResult
-        compoundInterestResult.text = entity.compoundResult
-        investInterestResult.text = entity.investResult
+        simpleInterestResult.text = record.simpleResult
+        compoundInterestResult.text = record.compoundResult
+        investInterestResult.text = record.investResult
         cardView.visibility = View.VISIBLE
         scrollView.smoothScrollTo(0, 0)
-        entity.save()
+
+        Completable.fromAction {
+            record.date = Date()
+            RecordDatabase.getInstance(context!!)?.recordDao()?.insert(record)
+        }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {  }
     }
 
     private fun onCalculateButtonClicked() {
-        val entity = Entity(
+        val record = Record(
                 principalField.text.toString(),
                 interestField.text.toString(),
                 periodField.text.toString(),
                 investField.text.toString()
         )
 
-        if (!checkFieldsValid(entity)) return
+        if (!checkFieldsValid(record)) return
 
         val view = activity?.currentFocus
         if (view != null) {
@@ -64,7 +75,7 @@ class CalculationFragment : Fragment(), CalculationView {
         periodField.clearFocus()
         investField.clearFocus()
 
-        presenter.calculate(entity)
+        presenter.calculate(record)
     }
 
     private fun onClearButtonClicked() {
@@ -74,13 +85,13 @@ class CalculationFragment : Fragment(), CalculationView {
         investField.setText("")
     }
 
-    private fun checkFieldsValid(entity: Entity): Boolean {
-        return if (entity.principal.isNotEmpty() && entity.interest.isNotEmpty() && entity.period.isNotEmpty()) {
+    private fun checkFieldsValid(record: Record): Boolean {
+        return if (record.principal.isNotEmpty() && record.interest.isNotEmpty() && record.period.isNotEmpty()) {
             true
         } else {
-            if (entity.principal.isEmpty()) principalField.error = "請輸入"
-            if (entity.interest.isEmpty()) interestField.error = "請輸入"
-            if (entity.period.isEmpty()) periodField.error = "請輸入"
+            if (record.principal.isEmpty()) principalField.error = "請輸入"
+            if (record.interest.isEmpty()) interestField.error = "請輸入"
+            if (record.period.isEmpty()) periodField.error = "請輸入"
             false
         }
     }

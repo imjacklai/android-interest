@@ -1,8 +1,7 @@
 package tw.ctl.interest.history
 
-import io.realm.RealmResults
-import tw.ctl.interest.Entity
+import tw.ctl.interest.model.Record
 
 interface HistoryView {
-    fun onHistories(histories: RealmResults<Entity>)
+    fun onFetchRecords(records: List<Record>)
 }

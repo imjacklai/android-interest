@@ -1,9 +1,8 @@
 package tw.ctl.interest.calculation
 
+import tw.ctl.interest.model.Record
 import java.math.BigDecimal
 import java.text.NumberFormat
-
-import tw.ctl.interest.Entity
 
 class CalculationPresenter {
 
@@ -17,26 +16,26 @@ class CalculationPresenter {
         view = null
     }
 
-    fun calculate(entity: Entity) {
-        val principalDecimal = BigDecimal(entity.principal)
-        val interestDecimal = BigDecimal((entity.interest.toDouble() / 100).toString())
-        val periodDecimal = BigDecimal(entity.period)
-        val periodInt = entity.period.toInt()
+    fun calculate(record: Record) {
+        val principalDecimal = BigDecimal(record.principal)
+        val interestDecimal = BigDecimal((record.interest.toDouble() / 100).toString())
+        val periodDecimal = BigDecimal(record.period)
+        val periodInt = record.period.toInt()
 
-        entity.principal = formatDecimal(principalDecimal)
-        entity.simpleResult = calculateSimpleInterest(principalDecimal, interestDecimal, periodDecimal)
-        entity.compoundResult = calculateCompoundInterest(principalDecimal, interestDecimal, periodInt)
+        record.principal = formatDecimal(principalDecimal)
+        record.simpleResult = calculateSimpleInterest(principalDecimal, interestDecimal, periodDecimal)
+        record.compoundResult = calculateCompoundInterest(principalDecimal, interestDecimal, periodInt)
 
-        if (entity.invest.isEmpty()) {
-            entity.invest = "---"
-            entity.investResult = "---"
+        if (record.invest.isEmpty()) {
+            record.invest = "---"
+            record.investResult = "---"
         } else {
-            val investDecimal = BigDecimal(entity.invest)
-            entity.invest = formatDecimal(investDecimal)
-            entity.investResult = calculateInvestInterest(principalDecimal, interestDecimal, periodInt, investDecimal)
+            val investDecimal = BigDecimal(record.invest)
+            record.invest = formatDecimal(investDecimal)
+            record.investResult = calculateInvestInterest(principalDecimal, interestDecimal, periodInt, investDecimal)
         }
 
-        view?.onResult(entity)
+        view?.onResult(record)
     }
 
     private fun calculateSimpleInterest(principal: BigDecimal, interest: BigDecimal, period: BigDecimal): String

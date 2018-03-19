@@ -5,7 +5,7 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
-import tw.ctl.interest.Entity
+import tw.ctl.interest.model.Record
 
 class CalculationPresenterTest {
 
@@ -28,27 +28,27 @@ class CalculationPresenterTest {
     @Test
     @Throws(Exception::class)
     fun calculateWithInvest() {
-        val entity = Entity("1000", "10", "10", "1000")
-        presenter?.calculate(entity)
+        val record = Record("1000", "10", "10", "1000")
+        presenter?.calculate(record)
 
-        entity.simpleResult = "2,000.00"
-        entity.compoundResult = "2,593.74"
-        entity.investResult = "18,531.17"
+        record.simpleResult = "2,000.00"
+        record.compoundResult = "2,593.74"
+        record.investResult = "18,531.17"
 
-        verify<CalculationView>(view).onResult(entity)
+        verify<CalculationView>(view).onResult(record)
     }
 
     @Test
     @Throws(Exception::class)
     fun calculateWithoutInvest() {
-        val entity = Entity("1000", "10", "10", "")
-        presenter?.calculate(entity)
+        val record = Record("1000", "10", "10", "")
+        presenter?.calculate(record)
 
-        entity.simpleResult = "2,000.00"
-        entity.compoundResult = "2,593.74"
-        entity.investResult = "---"
+        record.simpleResult = "2,000.00"
+        record.compoundResult = "2,593.74"
+        record.investResult = "---"
 
-        verify<CalculationView>(view).onResult(entity)
+        verify<CalculationView>(view).onResult(record)
     }
 
 }
