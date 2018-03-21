@@ -19,16 +19,16 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_10sdp"
+            android:padding="@dimen/padding"
             android:animateLayoutChanges="true">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10sdp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
+                android:layout_marginBottom="@dimen/margin"
+                app:cardCornerRadius="@dimen/corner_radius"
+                app:cardElevation="@dimen/elevation"
                 app:cardUseCompatPadding="true"
                 app:cardPreventCornerOverlap="true"
                 android:visibility="gone">
@@ -37,13 +37,13 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_10sdp">
+                    android:padding="@dimen/padding">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorSecondaryText"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="16sp"
                         android:text="@string/simple_interest_amount"/>
 
                     <TextView
@@ -53,20 +53,20 @@
                         android:gravity="end"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimaryText"
-                        android:textSize="@dimen/_16sdp"/>
+                        android:textSize="18sp"/>
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/margin"
                         android:background="@color/colorDivider"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/margin"
                         android:textColor="@color/colorSecondaryText"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="16sp"
                         android:text="@string/compound_interest_amount"/>
 
                     <TextView
@@ -76,20 +76,20 @@
                         android:gravity="end"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimaryText"
-                        android:textSize="@dimen/_16sdp"/>
+                        android:textSize="18sp"/>
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/margin"
                         android:background="@color/colorDivider"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/margin"
                         android:textColor="@color/colorSecondaryText"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="16sp"
                         android:text="@string/invest_interest_amount"/>
 
                     <TextView
@@ -99,7 +99,7 @@
                         android:gravity="end"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimaryText"
-                        android:textSize="@dimen/_16sdp"/>
+                        android:textSize="18sp"/>
 
                 </LinearLayout>
 
@@ -116,7 +116,7 @@
                     android:inputType="numberSigned"
                     android:nextFocusDown="@+id/interestField"
                     android:hint="@string/principal"
-                    android:textSize="@dimen/_12sdp"/>
+                    android:textSize="16sp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -124,7 +124,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/margin"
                 android:baselineAligned="true">
 
                 <android.support.design.widget.TextInputLayout
@@ -139,7 +139,7 @@
                         android:inputType="numberDecimal"
                         android:nextFocusDown="@+id/periodField"
                         android:hint="@string/interest"
-                        android:textSize="@dimen/_12sdp"/>
+                        android:textSize="16sp"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -155,7 +155,7 @@
                         android:inputType="numberSigned"
                         android:nextFocusDown="@+id/investField"
                         android:hint="@string/period"
-                        android:textSize="@dimen/_12sdp"/>
+                        android:textSize="16sp"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -164,7 +164,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp">
+                android:layout_marginTop="@dimen/margin">
 
                 <EditText
                     android:id="@+id/investField"
@@ -173,7 +173,7 @@
                     android:inputType="numberSigned"
                     android:imeOptions="actionDone"
                     android:hint="@string/invest"
-                    android:textSize="@dimen/_12sdp"/>
+                    android:textSize="16sp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -181,7 +181,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp">
+                android:layout_marginTop="@dimen/margin">
 
                 <Button
                     android:id="@+id/calculateButton"
@@ -189,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:background="@drawable/button_bg"
-                    android:textSize="@dimen/_14sdp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/white"
                     android:text="@string/calculate"
                     style="?android:attr/buttonBarButtonStyle"/>
@@ -199,9 +199,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/margin"
                     android:background="@drawable/button_bg"
-                    android:textSize="@dimen/_14sdp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/white"
                     android:text="@string/clear"
                     style="?android:attr/buttonBarButtonStyle"/>

@@ -10,14 +10,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_5sdp"
+        android:padding="@dimen/padding"
         android:animateLayoutChanges="true">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:cardElevation="@dimen/elevation"
             app:cardUseCompatPadding="true"
             app:cardPreventCornerOverlap="true">
 
@@ -25,20 +25,20 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp">
+                android:padding="@dimen/padding">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/simple_interest"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/_16sdp"/>
+                    android:textSize="20sp"/>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin"
+                    android:layout_marginBottom="@dimen/margin"
                     android:background="@color/colorDivider"/>
 
                 <TextView
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/simple_interest_description"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 
@@ -55,8 +55,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:cardElevation="@dimen/elevation"
             app:cardUseCompatPadding="true"
             app:cardPreventCornerOverlap="true">
 
@@ -64,20 +64,20 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp">
+                android:padding="@dimen/padding">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/compound_interest"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/_16sdp"/>
+                    android:textSize="20sp"/>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin"
+                    android:layout_marginBottom="@dimen/margin"
                     android:background="@color/colorDivider"/>
 
                 <TextView
@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/compound_interest_description"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 
@@ -94,8 +94,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:cardElevation="@dimen/elevation"
             app:cardUseCompatPadding="true"
             app:cardPreventCornerOverlap="true">
 
@@ -103,29 +103,28 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp">
+                android:padding="@dimen/padding">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/invest_interest"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/_16sdp" />
+                    android:textSize="20sp" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:background="@color/colorDivider" />
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin"
+                    android:layout_marginBottom="@dimen/margin"
+                    android:background="@color/colorDivider"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autoLink="web"
                     android:text="@string/invest_interest_description"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_14sdp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

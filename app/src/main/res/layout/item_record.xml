@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp"
+    app:cardCornerRadius="@dimen/corner_radius"
+    app:cardElevation="@dimen/elevation"
     app:cardUseCompatPadding="true"
     app:cardPreventCornerOverlap="true">
 
@@ -13,13 +13,13 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_10sdp">
+        android:padding="@dimen/padding">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorSecondaryText"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="16sp"
             android:text="@string/simple_interest_amount"/>
 
         <TextView
@@ -29,20 +29,20 @@
             android:gravity="end"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/_14sdp"/>
+            android:textSize="18sp"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin"
             android:background="@color/colorDivider"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/margin"
             android:textColor="@color/colorSecondaryText"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="16sp"
             android:text="@string/compound_interest_amount"/>
 
         <TextView
@@ -52,20 +52,20 @@
             android:gravity="end"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/_14sdp"/>
+            android:textSize="18sp"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin"
             android:background="@color/colorDivider"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/margin"
             android:textColor="@color/colorSecondaryText"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="16sp"
             android:text="@string/invest_interest_amount"/>
 
         <TextView
@@ -75,26 +75,26 @@
             android:gravity="end"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/_14sdp"/>
+            android:textSize="18sp"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin"
             android:background="@color/colorDivider"/>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/margin"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="16sp"
                 android:text="本　金"/>
 
             <TextView
@@ -102,26 +102,26 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/margin"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="16sp"
                 android:text="年利率(%)"/>
 
             <TextView
                 android:id="@+id/interest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/margin"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="16sp"/>
 
         </LinearLayout>
 
@@ -129,14 +129,14 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/margin"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="16sp"
                 android:text="年投資"/>
 
             <TextView
@@ -144,26 +144,26 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/margin"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="16sp"
                 android:text="週期(年)"/>
 
             <TextView
                 android:id="@+id/period"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/margin"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="16sp"/>
 
         </LinearLayout>
 
