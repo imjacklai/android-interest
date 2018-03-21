@@ -11,7 +11,7 @@ android {
         applicationId "tw.ctl.interest"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 11
+        versionCode 12
         versionName "1.0.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         project.ext.set("archivesBaseName", "interest-" + defaultConfig.versionName)
