@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
 
-@Database(entities = [Record::class], version = 1)
+@Database(entities = [Record::class], version = 1, exportSchema = false)
 @TypeConverters(DateTypeConverter::class)
 abstract class RecordDatabase : RoomDatabase() {
     abstract fun recordDao(): RecordDao
