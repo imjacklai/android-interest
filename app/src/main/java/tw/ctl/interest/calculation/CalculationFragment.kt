@@ -40,7 +40,7 @@ class CalculationFragment : Fragment(), CalculationView {
         investInterestResult.text = record.investResult
         cardView.visibility = View.VISIBLE
         scrollView.smoothScrollTo(0, 0)
-        presenter.save(context!!, record)
+        presenter.save(context, record)
     }
 
     private fun onCalculateButtonClicked() {

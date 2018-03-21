@@ -1,7 +1,6 @@
 package tw.ctl.interest.history
 
 import android.content.Context
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import tw.ctl.interest.model.RecordDatabase
@@ -18,13 +17,15 @@ class HistoryPresenter {
         view = null
     }
 
-    fun fetchLocalData(context: Context) {
-        RecordDatabase.getInstance(context)?.recordDao()?.getRecords()!!
+    fun fetchLocalData(context: Context?) {
+        if (context == null) return
+
+        RecordDatabase.getInstance(context).recordDao().getRecords()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { records -> view?.onFetchRecords(records) },
-                        { error -> Log.e("asd", error.message) }
+                        { records -> view?.onFetchSuccess(records) },
+                        { error -> view?.onFetchFailure(error) }
                 )
     }
 

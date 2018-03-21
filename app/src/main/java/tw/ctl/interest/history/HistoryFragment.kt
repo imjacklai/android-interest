@@ -25,12 +25,12 @@ class HistoryFragment : Fragment(), HistoryView {
         setRecyclerView()
         setAdView()
         presenter.attachView(this)
-        presenter.fetchLocalData(context!!)
+        presenter.fetchLocalData(context)
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        presenter.fetchLocalData(context!!)
+        presenter.fetchLocalData(context)
     }
 
     override fun onDestroyView() {
@@ -40,15 +40,21 @@ class HistoryFragment : Fragment(), HistoryView {
         adView?.destroy()
     }
 
-    override fun onFetchRecords(records: List<Record>) {
+    override fun onFetchSuccess(records: List<Record>) {
         if (records.isEmpty()) {
             recyclerView.visibility = View.GONE
             description.visibility = View.VISIBLE
+            description.text = "無紀錄"
         } else {
             recyclerView.visibility = View.VISIBLE
             description.visibility = View.GONE
         }
         adapter?.setRecords(records)
+    }
+
+    override fun onFetchFailure(error: Throwable) {
+        description.visibility = View.VISIBLE
+        description.text = "發生錯誤"
     }
 
     private fun setRecyclerView() {

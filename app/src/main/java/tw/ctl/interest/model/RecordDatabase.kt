@@ -14,14 +14,14 @@ abstract class RecordDatabase : RoomDatabase() {
     companion object {
         private var INSTANCE: RecordDatabase? = null
 
-        fun getInstance(context: Context): RecordDatabase? {
+        fun getInstance(context: Context): RecordDatabase {
             if (INSTANCE == null) {
                 synchronized(RecordDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
                             RecordDatabase::class.java, "record.db").build()
                 }
             }
-            return INSTANCE
+            return INSTANCE!!
         }
 
         fun destroyInstance() {

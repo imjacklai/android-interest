@@ -44,10 +44,12 @@ class CalculationPresenter {
         view?.onResult(record)
     }
 
-    fun save(context: Context, record: Record) {
+    fun save(context: Context?, record: Record) {
+        if (context == null) return
+
         Completable.fromAction {
             record.date = Date()
-            RecordDatabase.getInstance(context)?.recordDao()?.insert(record)
+            RecordDatabase.getInstance(context).recordDao().insert(record)
         }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {  }

@@ -23,7 +23,7 @@
         android:layout_centerInParent="true"
         android:textSize="20sp"
         android:textColor="@color/colorSecondaryText"
-        android:text="無紀錄"/>
+        android:visibility="gone"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
