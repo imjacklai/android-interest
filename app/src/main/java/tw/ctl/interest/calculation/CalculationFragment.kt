@@ -19,7 +19,7 @@ class CalculationFragment : Fragment(), CalculationView, AdapterView.OnItemSelec
 
     private val presenter = CalculationPresenter()
 
-    private lateinit var periodType: String
+    private var periodType: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
             = inflater.inflate(R.layout.fragment_calculation, container, false)
@@ -58,8 +58,9 @@ class CalculationFragment : Fragment(), CalculationView, AdapterView.OnItemSelec
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        periodType = parent?.getItemAtPosition(position).toString()
-        investInputLayout.hint = getString(R.string.invest, periodType, getString(R.string.optional))
+        periodType = position
+        val periodString = parent?.getItemAtPosition(position).toString()
+        investInputLayout.hint = getString(R.string.invest, periodString, getString(R.string.optional))
     }
 
     private fun onCalculateButtonClicked() {

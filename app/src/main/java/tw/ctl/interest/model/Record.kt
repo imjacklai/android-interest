@@ -14,7 +14,7 @@ data class Record(
         var principal: String,
         val interest: String,
         @ColumnInfo(name = "period_type")
-        var periodType: String,
+        var periodType: Int,
         val period: String,
         var invest: String,
         @ColumnInfo(name = "simple_result")
@@ -26,6 +26,6 @@ data class Record(
         var date: Date?
 ) {
     @Ignore
-    constructor(principal: String, interest: String, periodType: String, period: String, invest: String):
+    constructor(principal: String, interest: String, periodType: Int, period: String, invest: String):
             this(0, principal, interest, periodType, period, invest, "", "", "", null)
 }
