@@ -6,11 +6,16 @@
     <string name="info">資訊</string>
 
     <string name="principal">本金</string>
-    <string name="interest">年利率(%)</string>
-    <string name="period">週期(年)</string>
-    <string name="invest">年投資(選填)</string>
+    <string name="interest">利率(%)</string>
+    <string name="period">週期</string>
+    <string name="period_with_type">週期%1$s</string>
+    <string name="invest">%1$s投資%2$s</string>
     <string name="calculate">試算</string>
     <string name="clear">清除</string>
+    <string name="optional">(選填)</string>
+    <string name="please_enter">請輸入</string>
+    <string name="no_record">無紀錄</string>
+    <string name="error">發生錯誤</string>
 
     <string name="simple_interest_amount">單利本利和</string>
     <string name="compound_interest_amount">複利本利和</string>
@@ -37,4 +42,10 @@
         &#160;&#160;(1 + 利率) ^ 0\n
         ]
     </string>
+
+    <string-array name="period_array">
+        <item>年</item>
+        <item>季</item>
+        <item>月</item>
+    </string-array>
 </resources>

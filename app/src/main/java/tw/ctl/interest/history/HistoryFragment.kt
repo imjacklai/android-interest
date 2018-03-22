@@ -44,7 +44,7 @@ class HistoryFragment : Fragment(), HistoryView {
         if (records.isEmpty()) {
             recyclerView.visibility = View.GONE
             description.visibility = View.VISIBLE
-            description.text = "無紀錄"
+            description.text = getString(R.string.no_record)
         } else {
             recyclerView.visibility = View.VISIBLE
             description.visibility = View.GONE
@@ -54,7 +54,7 @@ class HistoryFragment : Fragment(), HistoryView {
 
     override fun onFetchFailure(error: Throwable) {
         description.visibility = View.VISIBLE
-        description.text = "發生錯誤"
+        description.text = getString(R.string.error)
     }
 
     private fun setRecyclerView() {

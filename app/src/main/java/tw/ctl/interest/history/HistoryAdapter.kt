@@ -36,7 +36,9 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
                 investInterest.text = record.investResult
                 principal.text = record.principal
                 interest.text = record.interest
+                periodLabel.text = context.getString(R.string.period_with_type, "(${record.periodType})")
                 period.text = record.period
+                investLabel.text = context.getString(R.string.invest, record.periodType, "")
                 invest.text = record.invest
             }
         }
