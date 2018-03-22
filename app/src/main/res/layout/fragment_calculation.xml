@@ -217,6 +217,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
         android:visibility="gone"
         ads:adUnitId="ca-app-pub-2754939326809910/4956864984"
         ads:adSize="SMART_BANNER"/>
