@@ -85,7 +85,11 @@ class CalculationFragment : Fragment(), CalculationView, AdapterView.OnItemSelec
         periodField.clearFocus()
         investField.clearFocus()
 
-        presenter.calculate(record)
+        try {
+            presenter.calculate(record)
+        } catch (e: NumberFormatException) {
+            periodField.error = "請輸入合理週期"
+        }
     }
 
     private fun onClearButtonClicked() {

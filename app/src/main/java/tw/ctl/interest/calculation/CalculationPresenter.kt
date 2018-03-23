@@ -26,7 +26,7 @@ class CalculationPresenter {
         val principalDecimal = BigDecimal(record.principal)
         val interestDecimal = BigDecimal((record.interest.toDouble() / 100).toString())
         val periodDecimal = BigDecimal(record.period)
-        val periodInt = record.period.toInt()
+        val periodInt = try { record.period.toInt() } catch (e: NumberFormatException) { throw NumberFormatException() }
 
         record.principal = formatDecimal(principalDecimal)
         record.simpleResult = calculateSimpleInterest(principalDecimal, interestDecimal, periodDecimal)
